@@ -12,6 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -56,6 +57,10 @@ CORS_ALLOW_METHODS = [
 
 
 INSTALLED_APPS = [
+     #extra for deployment
+    "whitenoise.runserver_nostatic",
+    
+    #pre
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,7 +74,7 @@ INSTALLED_APPS = [
     'accounts',
     'academic',
     'activites',
-
+    
 ]
 
 # Authentication
@@ -101,6 +106,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #extra for deployment
+     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'school_management_system.urls'
@@ -121,14 +128,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'school_management_system.wsgi.application'
+#for deployment < app >
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+WSGI_APPLICATION = 'school_management_system.wsgi.app'
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': dj_database_url.config(
@@ -141,6 +150,19 @@ DATABASES = {
 #         default="postgresql://school_management_w7ic_user:u36JAeTW27qm3YNA0pydhETmErlsmwlJ@dpg-cr69af52ng1s7395ol60-a.oregon-postgres.render.com/school_management_w7ic"
 #     )
 # }
+
+
+#extra for deployment
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.uemqhcxjmkhvmorzczjs',
+        'PASSWORD': 'Y#6D5$QFY628qi2',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'PORT': '6543'
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -168,9 +190,13 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles' # for deployment
+
+
+# if mvt in django 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'

@@ -71,7 +71,7 @@ class Teacher(models.Model):
 class Notice(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    file = models.FileField(upload_to='academic/images', blank=True, null=True)
+    file = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
