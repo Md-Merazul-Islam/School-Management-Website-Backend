@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absence Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #1a73e8; /* Blue background for the header */
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header img {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 20px 0;
+        }
+        .footer {
+            background-color: #f1f1f1; /* Light grey background for the footer */
+            text-align: center;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            font-size: 14px;
+            color: #777;
+        }
+        .footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://lh5.googleusercontent.com/proxy/BVyawcAMh0JZtHzUlgZdwG9uPlCUb96I_c7ikpLdrlkt0WpKTPzoT33Jo8s5z52f2bmi_LS7c4PVWkYogftV6E_j" alt="School Logo">
+        </div>
+        <div class="content">
+            <h2 style="color: red;">Absence Notification</h2>
+            <p>Dear Parent/Guardian,</p>
+            <p>We would like to inform you that your child, <strong>{{ student.first_name }} {{ student.last_name }}</strong>, was marked absent on <strong>{{ date }}</strong>.</p>
+            <p>If you have any questions or concerns, please contact the school administration.</p>
+            <p>Thank you for your attention.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; {{ 2024 }} MPI | <a href="http://www.mpi.edu.bd/">mpi.edu.bd</a></p>
+        </div>
+    </div>
+</body>
+</html>

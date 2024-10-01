@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .card-header h2 {
+            margin: 10px 0;
+        }
+        .card-header i {
+            font-size: 3em;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .card-body p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .card-body a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .card-body a:hover {
+            text-decoration: underline;
+        }
+        .card-footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px;
+            color: #6c757d;
+        }
+        .card-footer small {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-school"></i>
+                <h2>CST</h2>
+            </div>
+            <div class="card-body">
+                <h1>{{ title }}</h1>
+                <p>{{ description }}</p>
+                {% if file_url %}
+                    <p><a href="{{ file_url }}">Download the file</a></p>
+                {% endif %}
+            </div>
+
+            <button ><a style="text-decoration: none;" href="https://amader-cst.netlify.app/notice">Go To Website</a></button>
+            <div class="card-footer">
+              
+                <small>© 2024 CST. All rights reserved.</small>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

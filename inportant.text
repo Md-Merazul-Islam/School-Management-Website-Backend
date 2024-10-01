@@ -1,0 +1,29 @@
+pip freeze > requirements.txt
+Get-Content requirements.txt | ForEach-Object { $_ -replace '==.*', '' } | Set-Content requirements_no_version.txt
+
+	Admin username : 	admin
+	Admin password: 	meraz1234
+
+
+{
+  "username": "meraz",
+  "password": "meraz2004"
+}
+
+{
+  "username": "mdmerazul75@gmail.com",
+  "password": "meraz2004"
+}
+
+
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+rm db.sqlite3
+python manage.py makemigrations
+python manage.py migrate
+
+https://amader-school.up.railway.app/
+
+
+
+
