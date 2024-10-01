@@ -6,3 +6,4 @@ user_emails = User.objects.values_list('email', flat=True).exclude(email='')
 # Display the emails
 for email in user_emails:
     print(email)
+
