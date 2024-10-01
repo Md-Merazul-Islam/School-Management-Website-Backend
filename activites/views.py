@@ -17,12 +17,6 @@ class AttendanceViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsStaffOrReadOnly]  #  custom permission
 
 
-
-# class MarkViewSet(viewsets.ModelViewSet):
-#     queryset = Mark.objects.all()
-#     serializer_class = MarkSerializer
-#     # permission_classes = [IsStaffOrReadOnly]  #  custom permission
-
 class MarkViewSet(viewsets.ModelViewSet):
     queryset = Mark.objects.all()
     serializer_class = MarkSerializer
