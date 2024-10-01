@@ -1,23 +1,33 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "school_management_system/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "50mb",
-          "runtime": "python"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "school_management_system/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "school_management_system/wsgi.py"
-      }
-     
-    ]
-  
-  
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "school_management_system/wsgi.py"
+    }
+  ],
+  "functions": {
+    "school_management_system/wsgi.py": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "ignore": [
+    ".env",      // <-- Ignore environment file
+    "media/*",
+    "static/*",
+    ".venv/*",
+    "*.log",
+    "*.sqlite3",
+    "__pycache__/*"
+  ]
+}
