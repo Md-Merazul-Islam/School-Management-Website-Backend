@@ -22,7 +22,7 @@
     }
   },
   "ignore": [
-    ".env",      // <-- Ignore environment file
+    ".env",     
     "media/*",
     "static/*",
     ".venv/*",
