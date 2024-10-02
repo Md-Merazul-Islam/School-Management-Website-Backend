@@ -20,12 +20,12 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
     'https://*.127.0.0.1',
-    'https://amader-school.up.railway.app',
+    'https://school-management-five-iota.vercel.app',
     'https://sandbox.sslcommerz.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://amader-school.up.railway.app',
+    'https://school-management-five-iota.vercel.app',
     'https://sandbox.sslcommerz.com',
     'https://*.127.0.0.1',
     'http://127.0.0.1:5500',
