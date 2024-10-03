@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Student, Teacher, Class, Subject, Review
-from .serializers import StudentSerializer, TeacherSerializer, ClassSerializer, SubjectSerializer, ReviewSerializer
+from .serializers import StudentSerializer, TeacherSerializer, ClassSerializer, SubjectSerializer, ReviewSerializer,StudentSerializerForList
 from .permissions import IsAdminOrReadOnly
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
@@ -42,7 +42,7 @@ class SubjectViewSet(viewsets.ModelViewSet):
 # This is for filtering only, no POST allowed 
 class StudentListView(generics.ListAPIView):
     queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+    serializer_class = StudentSerializerForList
     filter_backends = [DjangoFilterBackend]
     filterset_class = StudentFilter
     

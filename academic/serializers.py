@@ -11,6 +11,35 @@ class ClassSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    # class_name = serializers.StringRelatedField()
+    marksheet = serializers.SerializerMethodField()
+    class Meta:
+        model = Student
+        fields = [
+           'id' ,'roll_no', 'username', 'first_name', 'last_name', 'email',
+            'phone_number', 'address', 'photo', 'class_name', 'marksheet'
+        ]
+
+    def get_marksheet(self, obj):
+        marks = Mark.objects.filter(student=obj)
+        return MarkSerializer(marks, many=True).data
+    def update(self, instance, validated_data):
+        # Handle the 'photo' field to prevent it from being set to null if not provided
+        photo = validated_data.get('photo', None)
+        if photo is None:
+            validated_data.pop('photo', None)
+
+        # Update other fields as usual
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+
+        # Save the instance with updated fields
+        instance.save()
+        return instance
+    
+    
+class StudentSerializerForList(serializers.ModelSerializer):
+    class_name = serializers.StringRelatedField()
     marksheet = serializers.SerializerMethodField()
     class Meta:
         model = Student
