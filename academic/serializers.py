@@ -24,16 +24,14 @@ class StudentSerializer(serializers.ModelSerializer):
         marks = Mark.objects.filter(student=obj)
         return MarkSerializer(marks, many=True).data
     def update(self, instance, validated_data):
-        # Handle the 'photo' field to prevent it from being set to null if not provided
+        
         photo = validated_data.get('photo', None)
         if photo is None:
             validated_data.pop('photo', None)
 
-        # Update other fields as usual
         for field, value in validated_data.items():
             setattr(instance, field, value)
 
-        # Save the instance with updated fields
         instance.save()
         return instance
     
@@ -52,16 +50,14 @@ class StudentSerializerForList(serializers.ModelSerializer):
         marks = Mark.objects.filter(student=obj)
         return MarkSerializer(marks, many=True).data
     def update(self, instance, validated_data):
-        # Handle the 'photo' field to prevent it from being set to null if not provided
+
         photo = validated_data.get('photo', None)
         if photo is None:
             validated_data.pop('photo', None)
 
-        # Update other fields as usual
         for field, value in validated_data.items():
             setattr(instance, field, value)
 
-        # Save the instance with updated fields
         instance.save()
         return instance
 
@@ -74,18 +70,11 @@ class TeacherSerializer(serializers.ModelSerializer):
         fields = ['id', 'employee_id', 'first_name', 'last_name', 'email', 'subject_name', 'subject', 'photo']
 
     def update(self, instance, validated_data):
-        # Check if 'photo' is in the request data
         photo = validated_data.get('photo', None)
-
-        # If 'photo' is not provided, retain the old photo
         if photo is None:
             validated_data.pop('photo', None)
-
-        # Loop through all validated data and update the instance fields
         for field, value in validated_data.items():
             setattr(instance, field, value)
-
-        # Save the instance with updated fields
         instance.save()
         return instance
 
@@ -137,3 +126,9 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+        read_only_fields = ['author']
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        validated_data['author'] = request.user
+        return super().create(validated_data)
