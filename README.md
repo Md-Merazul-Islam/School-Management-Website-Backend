@@ -91,4 +91,4 @@ cd School-Management-Front-End
 
 
 # Start t
-oy manage.py runserver
+py manage.py runserver
