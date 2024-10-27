@@ -9,9 +9,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('academics/', include('academic.urls')),
     path('classes/', include('activites.urls')),
+    path('payment/', include('payment.urls')),
 
-    # Django REST Framework built-in login and logout views
-    path('api-auth/', include('rest_framework.urls')),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
