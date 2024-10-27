@@ -29,9 +29,9 @@ class Payment(models.Model):
     user_id = models.IntegerField()
 
     def save(self, *args, **kwargs):
-        if not self.tran_id:  # Generate tran_id only if it's not already set
-            unique_id = str(uuid.uuid4())[:8]  # Generate a unique ID (first 8 characters)
-            self.tran_id = f"{self.month}-{unique_id}"  # Combine month and unique ID
+        if not self.tran_id:  
+            unique_id = str(uuid.uuid4())[:8]  
+            self.tran_id = f"{self.month}-{unique_id}"  
         super().save(*args, **kwargs)
 
     def __str__(self):

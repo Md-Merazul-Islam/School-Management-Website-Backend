@@ -19,18 +19,21 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
     'https://*.127.0.0.1',
     'https://school-management-five-iota.vercel.app',
-    'https://sandbox.sslcommerz.com',
+    'https://sandbox.aamarpay.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://school-management-five-iota.vercel.app',
-    'https://sandbox.sslcommerz.com',
+    'https://sandbox.aamarpay.com',
     'https://*.127.0.0.1',
+    'http://localhost:8000',
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
-
+    'http://127.0.0.1:8000',
 ]
 
 
@@ -57,10 +60,10 @@ CORS_ALLOW_METHODS = [
 
 
 INSTALLED_APPS = [
-     #extra for deployment
+    # extra for deployment
     "whitenoise.runserver_nostatic",
-    
-    #pre
+
+    # pre
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,7 +78,7 @@ INSTALLED_APPS = [
     'academic',
     'activites',
     'payment',
-    
+
 ]
 
 # Authentication
@@ -92,8 +95,6 @@ REST_FRAMEWORK = {
 }
 
 
-
-
 REST_AUTH_TOKEN_MODEL = 'knox.models.AuthToken'
 REST_AUTH_TOKEN_CREATOR = 'project.apps.accounts.utils.create_knox_token'
 
@@ -107,8 +108,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #extra for deployment
-     "whitenoise.middleware.WhiteNoiseMiddleware",
+    # extra for deployment
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'school_management_system.urls'
@@ -129,7 +130,7 @@ TEMPLATES = [
     },
 ]
 
-#for deployment < app >
+# for deployment < app >
 
 WSGI_APPLICATION = 'school_management_system.wsgi.app'
 
@@ -153,7 +154,7 @@ WSGI_APPLICATION = 'school_management_system.wsgi.app'
 # }
 
 
-#extra for deployment
+# extra for deployment
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -191,10 +192,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # for deployment
 
 
-# if mvt in django 
+# if mvt in django
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
