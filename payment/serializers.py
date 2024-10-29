@@ -33,7 +33,7 @@ class PaymentSerializer(serializers.ModelSerializer):
                 payload = {
                     "store_id": "aamarpaytest",
                     "tran_id": transaction_id,
-                    "success_url": "https://amader-cst.netlify.app/payment-success/",
+                    "success_url": "https://school-management-five-iota.vercel.app/payment/success/",
                     "fail_url": "https://school-management-five-iota.vercel.app/payment/fail/",
                     "cancel_url": "https://school-management-five-iota.vercel.app/payment/cancel/",
                     "amount": str(amount),
