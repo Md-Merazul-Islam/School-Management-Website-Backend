@@ -1,6 +1,6 @@
 # 🎓 School Management System
 
-A comprehensive school management system designed for managing academic, administrative, and student/teacher information. Built with Django REST API for the backend and React for the frontend, this system enables streamlined handling of school operations, student performance, notifications, and attendance management.
+A comprehensive school management system designed for managing academic, administrative, and student/teacher information. Built with Django REST API for the backend and React for the frontend, this system enables streamlined handling of school operations, student performance, notifications, aamarupay payment getway method and attendance management.
 
 ## 🚀 Live Demo
 
@@ -29,6 +29,7 @@ A comprehensive school management system designed for managing academic, adminis
 - **Authentication**: Secure login/logout
 - **Profile Management**: Students & teachers
 - **Exam Results**: Track & grading
+- **Monthly fees pay** : Aamarupay payment getway method
 - **GPA Calculation**: Automated GPA
 - **Activity Management**: Events & tracking
 - **Attendance**: Tracking & alerts
@@ -79,6 +80,16 @@ A comprehensive school management system designed for managing academic, adminis
 |----------------------|--------------------------------------------------------------------------------|
 | Attendance List      | [`/attendance-check`](https://school-management-five-iota.vercel.app/classes/attendance-check/) |
 | Marks                | [`/marks`](https://school-management-five-iota.vercel.app/classes/marks/)      |
+
+### Payment method aamarpay :
+| Action               | Endpoint                                                                       |
+|----------------------|--------------------------------------------------------------------------------|
+| Payment api-1        | [`/api`](https://school-management-five-iota.vercel.app/payment/api/) |
+| Payment api-2        | [`/api2`](https://school-management-five-iota.vercel.app/payment/api2/) |
+| Payment success        | [`/success`](https://school-management-five-iota.vercel.app/payment/success/) |
+| Payment fail        | [`/fail`](https://school-management-five-iota.vercel.app/payment/fail/) |
+| Payment cancel        | [`/cancel`](https://school-management-five-iota.vercel.app/payment/cancel/) |
+
 
 ---
 
