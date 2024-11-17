@@ -16,6 +16,11 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
+
+# goolge authentication
+SITE_ID = 1
+
+
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
@@ -24,6 +29,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://*.127.0.0.1',
     'https://school-management-five-iota.vercel.app',
     'https://sandbox.aamarpay.com',
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -34,6 +40,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5501',
     'http://127.0.0.1:8000',
+    "http://127.0.0.1:8000/accounts/google/login/callback",
 ]
 
 
@@ -79,7 +86,39 @@ INSTALLED_APPS = [
     'activites',
     'payment',
 
+    # googel authentications
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+# Google OAuth2 settings
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    }
+}
+
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Default Django backend
+)
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Authentication
 REST_FRAMEWORK = {
@@ -110,6 +149,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # extra for deployment
     "whitenoise.middleware.WhiteNoiseMiddleware",
+
+    # google authentication middleware
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'school_management_system.urls'
@@ -219,3 +261,9 @@ EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 TWILIO_ACCOUNT_SID = env('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = env('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = env('TWILIO_PHONE_NUMBER')
+
+
+# google authentication
+GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = env('GOOGLE_CLIENT_SECRET')
+GOOGLE_OAUTH_CALLBACK_URL = env('GOOGLE_CALLBACK_URL')

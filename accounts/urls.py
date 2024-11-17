@@ -18,5 +18,9 @@ urlpatterns = [
     path('logout/', views.UserLogoutApiView.as_view(), name='logout'),
     path('successful-email-verified/', views.successful, name='verified_success'),
     path('unsuccessful-email-verified/', views.unsuccessful, name='verified_failed'),
-    path('user-profile-update/',views.UserProfileView.as_view(),name='update_profile')
+    path('user-profile-update/',views.UserProfileView.as_view(),name='update_profile'),
+    
+    # google authenticated
+     path('accounts/', include('allauth.urls')), 
+     path('api/google-login/', views.GoogleAuthAPIView.as_view(), name='google_login')
 ]
