@@ -33,9 +33,9 @@ class PaymentSerializer(serializers.ModelSerializer):
                 payload = {
                     "store_id": "aamarpaytest",
                     "tran_id": transaction_id,
-                    "success_url": "https://school-management-five-iota.vercel.app/payment/success/",
-                    "fail_url": "https://school-management-five-iota.vercel.app/payment/fail/",
-                    "cancel_url": "https://school-management-five-iota.vercel.app/payment/cancel/",
+                    "success_url": "https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/success/",
+                    "fail_url": "https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/fail/",
+                    "cancel_url": "https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/cancel/",
                     "amount": str(amount),
                     "currency": "BDT",
                     "signature_key": "dbb74894e82415a2f7ff0ec3a97e4183",
