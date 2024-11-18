@@ -48,43 +48,43 @@ A comprehensive school management system designed for managing academic, adminis
 
 ### Account Management
 
-| Action          | Endpoint                                                                                                                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| All Users       | [`/user/allUser/`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/)                 |
-| Register        | [`/register`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/register/)             |
-| Login           | [`/login`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/login/)                   |
-| Logout          | [`/logout`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/logout/)                 |
-| User Details    | [`/profiles`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/profiles/)             |
-| User Role Check | [`/is_users_staff`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/is_users_staff/) |
+| Action          | Endpoint                                                                                 |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| All Users       | [`/user/allUser/`](https://school-management-dusky.vercel.app/accounts/)                 |
+| Register        | [`/register`](https://school-management-dusky.vercel.app/accounts/register/)             |
+| Login           | [`/login`](https://school-management-dusky.vercel.app/accounts/login/)                   |
+| Logout          | [`/logout`](https://school-management-dusky.vercel.app/accounts/logout/)                 |
+| User Details    | [`/profiles`](https://school-management-dusky.vercel.app/accounts/profiles/)             |
+| User Role Check | [`/is_users_staff`](https://school-management-dusky.vercel.app/accounts/is_users_staff/) |
 
 ### Academics
 
-| Action       | Endpoint                                                                                                               |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Students     | [`/students/`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/students/)          |
-| Teachers     | [`/teachers/`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/teachers/)          |
-| Student List | [`/students-list`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/students-list/) |
-| Teacher List | [`/teachers-list`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/teachers-list/) |
-| Classes      | [`/classes`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/classes/)             |
-| Subjects     | [`/subjects`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/subjects/)           |
-| Notices      | [`/notices`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/academics/notices/)             |
+| Action       | Endpoint                                                                                |
+| ------------ | --------------------------------------------------------------------------------------- |
+| Students     | [`/students/`](https://school-management-dusky.vercel.app/academics/students/)          |
+| Teachers     | [`/teachers/`](https://school-management-dusky.vercel.app/academics/teachers/)          |
+| Student List | [`/students-list`](https://school-management-dusky.vercel.app/academics/students-list/) |
+| Teacher List | [`/teachers-list`](https://school-management-dusky.vercel.app/academics/teachers-list/) |
+| Classes      | [`/classes`](https://school-management-dusky.vercel.app/academics/classes/)             |
+| Subjects     | [`/subjects`](https://school-management-dusky.vercel.app/academics/subjects/)           |
+| Notices      | [`/notices`](https://school-management-dusky.vercel.app/academics/notices/)             |
 
 ### Class Attendance & Marks
 
-| Action          | Endpoint                                                                                                                   |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Attendance List | [`/attendance-check`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/classes/attendance-check/) |
-| Marks           | [`/marks`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/classes/marks/)                       |
+| Action          | Endpoint                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------- |
+| Attendance List | [`/attendance-check`](https://school-management-dusky.vercel.app/classes/attendance-check/) |
+| Marks           | [`/marks`](https://school-management-dusky.vercel.app/classes/marks/)                       |
 
 ### Payment method aamarpay :
 
-| Action          | Endpoint                                                                                                 |
-| --------------- | -------------------------------------------------------------------------------------------------------- |
-| Payment api-1   | [`/api`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/api/)         |
-| Payment api-2   | [`/api2`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/api2/)       |
-| Payment success | [`/success`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/success/) |
-| Payment fail    | [`/fail`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/fail/)       |
-| Payment cancel  | [`/cancel`](https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/payment/cancel/)   |
+| Action          | Endpoint                                                                  |
+| --------------- | ------------------------------------------------------------------------- |
+| Payment api-1   | [`/api`](https://school-management-dusky.vercel.app/payment/api/)         |
+| Payment api-2   | [`/api2`](https://school-management-dusky.vercel.app/payment/api2/)       |
+| Payment success | [`/success`](https://school-management-dusky.vercel.app/payment/success/) |
+| Payment fail    | [`/fail`](https://school-management-dusky.vercel.app/payment/fail/)       |
+| Payment cancel  | [`/cancel`](https://school-management-dusky.vercel.app/payment/cancel/)   |
 
 ---
 

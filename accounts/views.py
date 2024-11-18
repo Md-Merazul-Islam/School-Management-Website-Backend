@@ -64,7 +64,7 @@ class UserRegistrationSerializerViewSet(APIView):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-            confirm_link = f"https://school-management-l07dkwsux-md-merazul-islams-projects.vercel.app/accounts/active/{uid}/{token}/"
+            confirm_link = f"https://school-management-dusky.vercel.app/accounts/active/{uid}/{token}/"
             email_subject = "Confirm Your Email"
             email_body = render_to_string(
                 'confirm_email.html', {'confirm_link': confirm_link})
