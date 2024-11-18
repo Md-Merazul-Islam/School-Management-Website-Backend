@@ -1,11 +1,5 @@
-from django.contrib.auth import login
-from django.conf import settings
-from google.auth.transport import requests
-from google.oauth2 import id_token
-from .serializers import UserDetailSerializer
-from rest_framework import generics, permissions
-from .models import Profile
-from .serializers import UserSerializer, ProfileSerializer, UserRegistrationSerializer, UserLoginSerializer
+from .models import  Profile
+from .serializers import UserSerializer, ProfileSerializer,UserRegistrationSerializer,UserLoginSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -28,33 +22,32 @@ from .permissions import IsStaffOrReadOnly
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework.exceptions import NotFound
 
-
 class UserViewSet(viewsets.ModelViewSet):
     # queryset = User.objects.all()
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly] 
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def me(self, request):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
-
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated]
-
+    
     def get_queryset(self):
         if self.request.user.is_anonymous:
             raise NotAuthenticated("User is not authenticated.")
-
+        
         queryset = Profile.objects.filter(user=self.request.user)
-
+        
         if not queryset.exists():
             raise NotFound("Profile not found for the user.")
-
+        
         return queryset
+
 
 
 class UserRegistrationSerializerViewSet(APIView):
@@ -108,25 +101,24 @@ class UserLoginApiView(APIView):
         if serializer.is_valid():
             username_or_email = serializer.validated_data['username']
             password = serializer.validated_data['password']
-
+            
             if "@" in username_or_email:
                 user_obj = User.objects.get(email=username_or_email)
-                user = authenticate(
-                    username=user_obj.username, password=password)
+                user = authenticate(username=user_obj.username, password=password)
             else:
-                user = user = authenticate(
-                    username=username_or_email, password=password)
-
+                user = user = authenticate(username=username_or_email, password=password)
+          
             if user is not None and user.is_active:
                 login(request, user)
                 token, _ = Token.objects.get_or_create(user=user)
-                return Response({'message': 'successfully login.\n', 'token': token.key, 'user_id': user.id, 'is_staff': user.is_staff}, status=status.HTTP_200_OK)
+                return Response({'message':'successfully login.\n','token': token.key, 'user_id': user.id, 'is_staff': user.is_staff }, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Invalid credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
-
+        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+    
 class UserLogoutApiView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -137,13 +129,23 @@ class UserLogoutApiView(APIView):
         messages.success(request, "Successfully logged out.")
         return redirect('login')
 
-
+# email confirm success message
 def successful(request):
     return render(request, 'successful.html')
 
-
+# email confirm unsuccessful message
 def unsuccessful(request):
     return render(request, 'unsuccessful.html')
+
+
+
+
+
+from rest_framework import generics, permissions
+from django.contrib.auth.models import User
+from .serializers import UserDetailSerializer
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
@@ -158,37 +160,10 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()  # Get the current user
-        serializer = self.get_serializer(
-            instance, data=request.data, partial=partial)
-
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        
         # Check if the data is valid
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
-
+        
         return Response(serializer.data)
-
-
-class GoogleAuthAPIView(APIView):
-    def post(self, request):
-        token = request.data.get('token')
-
-        try:
-            # Verify the token
-            idinfo = id_token.verify_oauth2_token(token, requests.Request(), settings.GOOGLE_CLIENT_ID)
-
-            # Check if the user exists
-            user, created = User.objects.get_or_create(email=idinfo['email'])
-
-            if created:
-                # If new user, create a new user account
-                user.first_name = idinfo.get('given_name', '')
-                user.last_name = idinfo.get('family_name', '')
-                user.is_active = True
-                user.save()
-
-            # Log the user in
-            login(request, user)
-
-            return Response({'message': 'Successfully logged in','token':token, 'user_id': user.id}, status=status.HTTP_200_OK)
-        except ValueError:
-            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)

@@ -6,8 +6,8 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet,basename='all_user')
-router.register(r'profiles', ProfileViewSet,basename='user_info')
+router.register(r'users', UserViewSet, basename='all_user')
+router.register(r'profiles', ProfileViewSet, basename='user_info')
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -17,10 +17,8 @@ urlpatterns = [
     path('login/', views.UserLoginApiView.as_view(), name='login'),
     path('logout/', views.UserLogoutApiView.as_view(), name='logout'),
     path('successful-email-verified/', views.successful, name='verified_success'),
-    path('unsuccessful-email-verified/', views.unsuccessful, name='verified_failed'),
-    path('user-profile-update/',views.UserProfileView.as_view(),name='update_profile'),
-    
-    # google authenticated
-     path('accounts/', include('allauth.urls')), 
-     path('api/google-login/', views.GoogleAuthAPIView.as_view(), name='google_login')
+    path('unsuccessful-email-verified/',
+         views.unsuccessful, name='verified_failed'),
+    path('user-profile-update/',
+         views.UserProfileView.as_view(), name='update_profile')
 ]
