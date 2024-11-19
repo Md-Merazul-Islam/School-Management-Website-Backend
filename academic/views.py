@@ -57,41 +57,42 @@ class TeacherListView(generics.ListAPIView):
     
     
 
+import logging
+import datetime
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from rest_framework import viewsets
+from rest_framework.response import Response
+from .models import Notice
+from .serializers import NoticeSerializer
+from django.conf import settings
+from django.contrib.auth.models import User
 
 
-# Set up logging
 logger = logging.getLogger(__name__)
 
 class NoticeViewSet(viewsets.ModelViewSet):
     queryset = Notice.objects.all().order_by('-created_at')
     serializer_class = NoticeSerializer
-    parser_classes = (MultiPartParser, FormParser)
-    # permission_classes = []  # No permission classes required
-
+    
     def perform_create(self, serializer):
         notice = serializer.save()
-
-        # Get all active user emails
         active_user_emails = User.objects.filter(is_active=True).values_list('email', flat=True).exclude(email='')
 
-        # Prepare email subject and context for rendering the email body
         email_subject = "Important Notice: " + notice.title
         context = {
             'title': notice.title,
             'description': notice.description,
-            'file_url': self.request.build_absolute_uri(notice.file.url) if notice.file else None,
+            'file_url': notice.image,  
             'current_year': datetime.datetime.now().year
         }
-
-        # Render HTML email body
         email_body = render_to_string('notice_email.html', context)
 
-        # Send email to all active users
         for email in active_user_emails:
             try:
                 email_message = EmailMultiAlternatives(
                     subject=email_subject,
-                    body='',  
+                    body='', 
                     from_email=settings.EMAIL_HOST_USER,
                     to=[email]
                 )
@@ -100,7 +101,7 @@ class NoticeViewSet(viewsets.ModelViewSet):
             except Exception as e:
                 logger.error(f"Error sending email to {email}: {e}")
 
-        return Response('Successfully sent email and notice updated')
+        return Response({'message': 'Successfully sent email and notice updated.'}, status=200)
 
 
 

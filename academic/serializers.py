@@ -92,30 +92,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 class NoticeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notice
-        fields = ['id', 'title', 'description', 'file', 'created_at']
-
-    def validate_file(self, value):
-        """Ensure only PDF and image files are allowed."""
-        if value and not value.name.endswith(('.pdf', '.png', '.jpg', '.jpeg')):
-            raise serializers.ValidationError("Only PDF and image files are allowed.")
-        return value
-
-    def update(self, instance, validated_data):
-        """Update only provided fields and ensure file is not reset to null."""
-        file = validated_data.pop('file', None)
-
-        # Update other fields
-        instance.title = validated_data.get('title', instance.title)
-        instance.description = validated_data.get('description', instance.description)
-
-        # Only update the file if a new file is provided
-        if file is not None:
-            instance.file = file
-        
-        # Save the updated instance
-        instance.save()
-        return instance
-
+        fields = ['id', 'title', 'description', 'image', 'created_at']
 
 
 

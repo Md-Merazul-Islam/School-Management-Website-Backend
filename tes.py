@@ -7,3 +7,9 @@ user_emails = User.objects.values_list('email', flat=True).exclude(email='')
 for email in user_emails:
     print(email)
 
+file = open("myfile.txt", "w")
+file.write("Hello world!")
+file.close()
+file= open("myfile.txt", "r")
+print(file.read())
+file.close()
