@@ -1,7 +1,5 @@
 from pathlib import Path
 import environ
-import dj_database_url
-import os
 env = environ.Env()
 environ.Env.read_env()
 
@@ -78,6 +76,7 @@ INSTALLED_APPS = [
     'academic',
     'activites',
     'payment',
+    'drf_yasg',
 
 ]
 
@@ -134,35 +133,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'school_management_system.wsgi.app'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default="postgresql://postgres:roBnThtDzPlkmUfVyXQGcRfclKsmwDTK@junction.proxy.rlwy.net:40499/railway"
-#     )
-# }
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default="postgresql://postgres.jbopcwghbyuxsgeyrezd:[YOUR-PASSWORD]@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres"
-#     )
-# }
-
 
 # extra for deployment
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.jbopcwghbyuxsgeyrezd',
-        'PASSWORD': 'uru84yX@4cMfCcF',
+        'USER': 'postgres.enqpzuejsabhpskclnta',
+        'PASSWORD': '7S8u_RU9U-YQc.e',
         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
-        'PORT': '6543'
+        'PORT': '5432'
     }
 }
 
@@ -195,14 +175,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # for deployment
 
 
-# if mvt in django
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
